@@ -5,6 +5,7 @@ import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.vector.Vector;
 import org.lwjgl.util.vector.Vector3f;
 
 import static java.lang.Math.*;
@@ -74,15 +75,16 @@ public class Main {
 		glOrtho(-aspX, aspX, -aspY, aspY, 0, 1);
 	}
 
-	private static double angle = 0;
 	private static void paintGL() {
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_STENCIL_BUFFER_BIT);
 		glColor3f(0,0,0);
 
-		angle += 0.01;
 		for (float x = -10; x <= 10; ++x) {
 			for (float y = -10; y <= 10; ++y) {
-				gltArrow(new Vector3f(x, y, 0), new Vector3f((float) cos(angle), (float) sin(angle), 0f));
+				final Vector3f position = new Vector3f(x, y, 0);
+				final Vector3f orientation = position.normalise(null);
+				orientation.scale(-4/position.lengthSquared());
+				gltArrow(position, orientation);
 			}
 		}
 	}
