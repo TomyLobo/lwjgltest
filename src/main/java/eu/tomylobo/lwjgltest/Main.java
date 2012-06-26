@@ -83,8 +83,8 @@ public class Main {
 			for (float y = -10; y <= 10; ++y) {
 				final Vector3f position = new Vector3f(x, y, 0);
 				final Vector3f orientation = position.normalise(null);
-				orientation.scale(-4/position.lengthSquared());
-				gltArrow(position, orientation);
+				orientation.scale(-1/position.lengthSquared());
+				gltArrow(position, new Vector3f(x*-.2f, 1, 0).normalise(null));
 			}
 		}
 	}
