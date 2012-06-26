@@ -79,13 +79,26 @@ public class Main {
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_STENCIL_BUFFER_BIT);
 		glColor3f(0,0,0);
 
-		for (float x = -10; x <= 10; ++x) {
-			for (float y = -10; y <= 10; ++y) {
+		for (float x = -10; x <= 10; x+= .3f) {
+			for (float y = -10; y <= 10; y += .3f) {
 				final Vector3f position = new Vector3f(x, y, 0);
 				final Vector3f orientation = position.normalise(null);
 				orientation.scale(-1/position.lengthSquared());
-				gltArrow(position, new Vector3f(x*-.2f, 1, 0).normalise(null));
+				final float x2 = max(-1, min(1, x));
+				gltArrow(position, new Vector3f(x2-x, -y, 0).normalise(null));
 			}
 		}
+
+		glColor3f(.5f,.5f,0);
+		glLineWidth(5);
+
+		glBegin(GL_LINES);
+		glVertex3f(-10, 0, 0);
+		glVertex3f(-1, 0, 0);
+		glVertex3f(1, 0, 0);
+		glVertex3f(10, 0, 0);
+		glEnd();
+
+		glLineWidth(1);
 	}
 }
