@@ -85,8 +85,8 @@ public class Main {
 				final Vector3f position = new Vector3f(x, y, 0);
 				final Vector3f orientation = new Vector3f(x2 - x, -y, 0);
 				final float lengthSquared = orientation.lengthSquared();
-				final float scale = 1f / lengthSquared;
-				if (scale > 10) continue;
+				final float scale = .3f / lengthSquared;
+				if (scale > 3) continue;
 				orientation.normalise().scale(scale);
 				gltArrow(position, orientation);
 			}
