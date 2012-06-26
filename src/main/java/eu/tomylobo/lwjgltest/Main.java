@@ -5,7 +5,6 @@ import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.vector.Vector;
 import org.lwjgl.util.vector.Vector3f;
 
 import static java.lang.Math.*;
@@ -81,11 +80,12 @@ public class Main {
 
 		for (float x = -10; x <= 10; x+= .3f) {
 			for (float y = -10; y <= 10; y += .3f) {
-				final Vector3f position = new Vector3f(x, y, 0);
-				final Vector3f orientation = position.normalise(null);
-				orientation.scale(-1/position.lengthSquared());
 				final float x2 = max(-1, min(1, x));
-				gltArrow(position, new Vector3f(x2-x, -y, 0).normalise(null));
+
+				final Vector3f position = new Vector3f(x, y, 0);
+				final Vector3f orientation = new Vector3f(x2 - x, -y, 0).normalise(null);
+				orientation.scale(1f / position.lengthSquared());
+				gltArrow(position, orientation);
 			}
 		}
 
