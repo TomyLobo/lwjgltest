@@ -18,6 +18,8 @@ public class GL {
 	public static void gltArrow(Vector3f position, Vector3f orientation) {
 		float arrowHeadSize = 0.1f;
 
+		orientation.scale(.3f);
+		
 		orientation = new Vector3f(orientation);
 		orientation.scale(0.5f);
 
