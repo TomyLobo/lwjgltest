@@ -83,7 +83,8 @@ public class Main {
 				final float x2 = max(-1, min(1, x));
 
 				final Vector3f position = new Vector3f(x, y, 0);
-				final Vector3f orientation = new Vector3f(x2 - x, -y, 0);
+				final Vector3f orientation = new Vector3f(x - x2, y, 0);
+				orientation.scale(signum(y));
 				final float lengthSquared = orientation.lengthSquared();
 				final float scale = .3f / lengthSquared;
 				if (scale > 3) continue;
